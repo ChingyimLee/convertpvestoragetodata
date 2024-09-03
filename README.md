@@ -27,7 +27,7 @@ Proxmox的缺省安装会创建 local 和 local-lvm 两个存储。其中local�
 2、卸载并删除 lvm-thin
 
 >umount /dev/pve/data\
-lvremove /dev/pve/data
+>lvremove /dev/pve/data
 
 按Y 确认删除。
 
@@ -44,8 +44,8 @@ lvremove /dev/pve/data
 5、格式化，并挂载文件系统。
 
 >mkfs.ext4 /dev/pve/data\
-mkdir /mnt/data\
-mount /dev/pve/data /mnt/data
+>mkdir /mnt/data\
+>mount /dev/pve/data /mnt/data
 
 6、最后配置 fstab，确保重启时，可以挂载文件系统
 
@@ -60,8 +60,8 @@ mount /dev/pve/data /mnt/data
 >vgdisplay pve | grep Free | awk '{print "lvcreate -l " $5 " -n data pve -y"}' |bash\
 >
 >mkfs.ext4 /dev/pve/data\
-mkdir /mnt/data\
-mount /dev/pve/data /mnt/data\
+>mkdir /mnt/data\
+>mount /dev/pve/data /mnt/data\
 >
 >echo "/dev/pve/data /mnt/data ext4 defaults 0 0" >> /etc/fstab
 
