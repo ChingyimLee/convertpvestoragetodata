@@ -75,11 +75,13 @@ mount /dev/pve/data /mnt/data\
  
  所有的操作汇总成如下脚本
 >pvesh delete /storage/local-lvm\
-umount /dev/pve/data\
-lvremove /dev/pve/data -y\
-vgdisplay pve | grep Free | awk '{print "lvcreate -l " $5 " -n data pve -y"}' |bash\
-mkfs.ext4 /dev/pve/datamkdir /mnt/datamount /dev/pve/data /mnt/data\
-echo "/dev/pve/data /mnt/data ext4 defaults 0 0" >> /etc/fstab\
-pvesm  add dir  data  --path=/mnt/data
+>umount /dev/pve/data\
+>lvremove /dev/pve/data -y\
+>vgdisplay pve | grep Free | awk '{print "lvcreate -l " $5 " -n data pve -y"}' |bash\
+>mkfs.ext4 /dev/pve/data\
+>mkdir /mnt/data\
+>mount /dev/pve/data /mnt/data\
+>echo "/dev/pve/data /mnt/data ext4 defaults 0 0" >> /etc/fstab\
+>pvesm  add dir  data  --path=/mnt/data
 
 >原文链接：https://blog.51cto.com/jieyun/9611770
